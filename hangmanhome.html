@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name = "viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1 style ="color: maroon; text-align: center;", class="start_title">Welcome to Hangman!</h1>
+    <p style="color: maroon; text-align: center; font-size: 25px;", class="start_text">Ready to play?</p>
+    <div style="text-align: center;", class="button1"><button type="button;", style = "color:maroon;", class = "start_button;", onclick="nextstep()">Continue...</button></div>
+    <div style = "text-align: center;", class = "div1">
+
+    </div>
+    <div style = "text-align: center;", class = "div2">
+    
+    </div>
+    <div style = "text-align: center; color:maroon; font-size: 25px;", class = "div3">
+    
+    </div>
+    <script>
+        function replace(orig, replace, index) {
+        let firstPart = orig.substr(0, index);
+ 
+        let lastPart = orig.substr(index + 1);
+ 
+        let newString =
+            firstPart + replace + lastPart;
+        return newString;
+    }
+    function findDuplicates(word){
+    let counting = 0;
+    let list3 = [];
+    let pos = 0;
+    let list4 =[];
+    for(let i = 0; i < word.length; i++){
+        for(let j = 0; j < word.length; j++){
+            if((word[i] === word[j]) && (list4.includes(word[i]) == false)){
+                counting  += 1;
+                if(i == j){
+                    counting = 0;
+                }
+                if((counting == 1) && (i != j)){
+                    list3.push(j);
+                    counting = 0;
+                    list4.push(word[i]);
+                }
+            }
+        }
+    counting = 0;
+}
+return list3;
+}
+    var button1 = document.querySelector(".button1");
+    var new_text = document.querySelector(".start_text");
+    var new_title = document.querySelector(".start_title");
+    var div1 = document.querySelector(".div1");
+    var div2 = document.querySelector(".div2");
+    var div3 = document.querySelector(".div3")
+    function nextstep(){
+        new_title.innerHTML = "Choose how many letters you'd like from below!";
+        new_text.innerHTML = "";
+        button1.style.display = "none";
+        var nbutton1 = document.createElement("button");
+        div1.appendChild(nbutton1);
+        nbutton1.style.width = "50px";
+        nbutton1.style.length = "50px";
+        nbutton1.style.height = "50px";
+        nbutton1.innerHTML = "1";
+        var nbutton2 = document.createElement("button");
+        div1.appendChild(nbutton2);
+        nbutton2.style.width = "50px";
+        nbutton2.style.length = "50px";
+        nbutton2.style.height = "50px";
+        nbutton2.innerHTML = "2";
+        var nbutton3 = document.createElement("button");
+        div1.appendChild(nbutton3);
+        nbutton3.style.width = "50px";
+        nbutton3.style.length = "50px";
+        nbutton3.style.height = "50px";
+        nbutton3.innerHTML = "3";
+        var nbutton4 = document.createElement("button");
+        div1.appendChild(nbutton4);
+        nbutton4.style.width = "50px";
+        nbutton4.style.length = "50px";
+        nbutton4.style.height = "50px";
+        nbutton4.innerHTML = "4";
+        var nbutton5 = document.createElement("button");
+        div1.appendChild(nbutton5);
+        nbutton5.style.width = "50px";
+        nbutton5.style.length = "50px";
+        nbutton5.style.height = "50px";
+        nbutton5.innerHTML = "5";
+        var nbutton6 = document.createElement("button");
+        div1.appendChild(nbutton6);
+        nbutton6.style.width = "50px";
+        nbutton6.style.length = "50px";
+        nbutton6.style.height = "50px";
+        nbutton6.innerHTML = "6";
+        var input1 = document.createElement("input");
+        input1.style.width = "50px";
+        input1.style.length = "50px";
+        input1.style.height = "50px";
+        var submitbutton = document.createElement("button");
+        submitbutton.style.width = "100px";
+        submitbutton.style.height = "50px";
+        submitbutton.style.length = "50px";
+        submitbutton.innerHTML = "Submit";
+        var under1 = document.createElement("p");
+        under1.innerHTML = "_";
+        under1.style.fontSize = "120px";
+        var under2 = document.createElement("p");
+        under2.innerHTML = "_ _";
+        under2.style.fontSize = "105px";
+        var under3 = document.createElement("p");
+        under3.innerHTML = "_ _ _";
+        under3.style.fontSize = "95px";
+        var under4 = document.createElement("p");
+        under4.innerHTML = "_ _ _ _";
+        under4.style.fontSize = "80px";
+        var under5 = document.createElement("p");
+        under5.innerHTML = "_ _ _ _ _";
+        under5.style.fontSize = "65px";
+        var under6 = document.createElement("p");
+        under6.innerHTML = "_ _ _ _ _ _";
+        under6.style.fontSize = "50px";
+        var array3 = ["and", "are", "fix", "own", "fly", "odd", "ape", "fry", "our", "ace"];
+        nbutton6.addEventListener("click", function(){
+        nbutton1.style.display = "none";
+        nbutton2.style.display = "none";
+        nbutton3.style.display = "none";
+        nbutton4.style.display = "none";
+        nbutton5.style.display = "none";
+        nbutton6.style.display = "none";
+        new_title.innerHTML = "Guess a letter!";
+        div1.appendChild(input1);
+        div2.appendChild(under6);
+        });
+        nbutton5.addEventListener("click", function(){
+        nbutton1.style.display = "none";
+        nbutton2.style.display = "none";
+        nbutton3.style.display = "none";
+        nbutton4.style.display = "none";
+        nbutton5.style.display = "none";
+        nbutton6.style.display = "none";
+        new_title.innerHTML = "Guess a letter!";
+        div1.appendChild(input1);
+        div2.appendChild(under5);
+        });
+        nbutton4.addEventListener("click", function(){
+        nbutton1.style.display = "none";
+        nbutton2.style.display = "none";
+        nbutton3.style.display = "none";
+        nbutton4.style.display = "none";
+        nbutton5.style.display = "none";
+        nbutton6.style.display = "none";
+        new_title.innerHTML = "Guess a letter!";
+        div1.appendChild(input1);
+        div2.appendChild(under4);
+        });
+        nbutton3.addEventListener("click", function(){
+        nbutton1.style.display = "none";
+        nbutton2.style.display = "none";
+        nbutton3.style.display = "none";
+        nbutton4.style.display = "none";
+        nbutton5.style.display = "none";
+        nbutton6.style.display = "none";
+        new_title.innerHTML = "Guess a letter!";
+        div1.appendChild(input1);
+        div2.appendChild(under3);
+        div1.appendChild(submitbutton);
+        var a = Math.floor(Math.random() * array3.length);
+        var rword3 = array3[a];
+        new_title.innerHTML = rword3;
+        var answer;
+        var cor = 0;
+        var output = "_ _ _";
+        var list1 = [];
+        var list5 = findDuplicates(rword3);
+        submitbutton.addEventListener("click", function(){
+                answer = input1.value;
+                var loc = rword3.indexOf(answer);
+                function erase(){
+                    message.innerHTML = "";
+                }
+                if(list1.includes(answer)){
+                        var message = document.createElement("p");
+                        div3.appendChild(message);
+                        message.innerHTML = "You already chose this letter!";
+                        setTimeout(erase, 3000);
+                    }
+                else{
+                if((rword3.includes(answer)) && (answer != "")){
+                    var loc2 = [];
+                    output = replace(output, answer, loc*2);
+                    for(let i = 0; i < list5.length; i++){
+                        if(rword3[list5[i]] == answer){
+                            loc2.push(list5[i]);
+                        }
+                    }
+                    for(let j = 0; j < loc2.length; j++){
+                        output = replace(output, answer, loc2[j]*2);
+                    }
+                    under3.innerHTML = output;
+                    list1.push(answer);
+                    cor += 1
+                    }
+                }
+       })
+        });
+        nbutton2.addEventListener("click", function(){
+        nbutton1.style.display = "none";
+        nbutton2.style.display = "none";
+        nbutton3.style.display = "none";
+        nbutton4.style.display = "none";
+        nbutton5.style.display = "none";
+        nbutton6.style.display = "none";
+        new_title.innerHTML = "Guess a letter!";
+        div1.appendChild(input1);
+        div2.appendChild(under2);
+        });
+        nbutton1.addEventListener("click", function(){
+        nbutton1.style.display = "none";
+        nbutton2.style.display = "none";
+        nbutton3.style.display = "none";
+        nbutton4.style.display = "none";
+        nbutton5.style.display = "none";
+        nbutton6.style.display = "none";
+        new_title.innerHTML = "Guess a letter!";
+        div1.appendChild(input1);
+        div2.appendChild(under1);
+        });
+        
+
+    }
+    </script>
+</body>
+</html>
