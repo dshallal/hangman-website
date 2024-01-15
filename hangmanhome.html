@@ -4,27 +4,35 @@
 <meta charset="UTF-8">
 <meta name = "viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-    <h1 style ="color: maroon; text-align: center;", class="start_title">Welcome to Hangman!</h1>
-    <p style="color: maroon; text-align: center; font-size: 25px;", class="start_text">Ready to play?</p>
-    <div style="text-align: center;", class="button1"><button type="button;", style = "color:maroon;", class = "start_button;", onclick="nextstep()">Continue...</button></div>
+<body background="https://t4.ftcdn.net/jpg/02/77/51/61/240_F_277516155_yBsKRgVt2sifSu4QOj1QMqh2qaJiiG0X.jpg", style="background-repeat: no-repeat; background-size: 100%;">
+    <h1 style ="color: rgb(87, 95, 169); text-align: center; background-color: white; border-radius: 25px; width: 45%; margin: auto; border-style: double; font-family: 'Courier New', Courier, monospace;", class="start_title">Welcome to Hangman!</h1>
+    <p style="color: rgb(87, 95, 169); text-align: center; font-size: 25px; font-family: 'Courier New', Courier, monospace; font-weight: bold; width: 25%; margin: auto; border-style: solid; background-color: white; margin-top: 10px;", class="start_text">Ready to play?</p>
+    <img src = "C:\Users\dshal\OneDrive\Pictures\Screenshots\Screenshot 2024-01-12 183615.png" alt = "Title Hangman" style = "display: block; margin-right: auto; margin-left: auto; padding-top: 50px; padding-left: 5px;", class = "hangimg">
+    <div style = "text-align: center;", class="button1"><button type="button;", style = "color:rgb(87, 95, 169); margin-top: 50px; display: inline-block; height: 100px; width: 200px; font-weight: bold; background-color: rgb(168, 165, 165); border-radius: 20px; border: solid; border-width: 1px; cursor: pointer;", class = "start_button;", onclick="nextstep()">Continue...</button></div>
     <div style = "text-align: center;", class = "div1">
 
     </div>
-    <div style = "text-align: center;", class = "div2">
+    <div class = "div2", style = "text-align: center;">
+        <div style = "float: left;">
+        <img src = "C:\Users\dshal\OneDrive\Pictures\Screenshots\Screenshot 2024-01-13 175341.png" alt = "hangman" style = "display: none; padding-left: 80px; padding-top: 20px; height: 300px; width: 300px;" id = "stage1">
+        <p style = "padding-left: 70px; display: none;", class = "tries">Mistakes Left: 7 </p>
+        </div>
+        <div style = "float: right; margin-right: 10px;">
+        <div class = "flex_title", style = "padding-left: 20px;">
+        </div>
+        <div style = "display: none; background-color: rgb(168, 165, 165); height: 300px; width: 300px; flex-wrap: wrap; justify-content: space-evenly; margin-right: 80px; border: double; border-color: rgb(87, 95, 169);", class = "flex-div">
+        </div>
+    </div>
+    </div>
+    <div style = "display: none; text-align: center; color: rgb(61, 67, 121); font-size: 35px; border: solid; width: 30%; margin: auto; background-color: white; ;", class = "div3">
     
     </div>
-    <div style = "text-align: center; color:maroon; font-size: 25px;", class = "div3">
+    <div style = "display: none; text-align: center; color: rgb(61, 67, 121); font-size: 35px; border: solid; width: 30%; margin: auto; background-color: white; ;", class = "div4">
     
     </div>
     <script>
         function replace(orig, replace, index) {
-        let firstPart = orig.substr(0, index);
- 
-        let lastPart = orig.substr(index + 1);
- 
-        let newString =
-            firstPart + replace + lastPart;
+        let newString = orig.substring(0, index) + replace + orig.substring(index + 1);
         return newString;
     }
     function findDuplicates(word){
@@ -34,7 +42,7 @@
     let list4 =[];
     for(let i = 0; i < word.length; i++){
         for(let j = 0; j < word.length; j++){
-            if((word[i] === word[j]) && (list4.includes(word[i]) == false)){
+            if((word[i] == word[j]) && (list4.includes(word[i]) == false)){
                 counting  += 1;
                 if(i == j){
                     counting = 0;
@@ -50,61 +58,178 @@
 }
 return list3;
 }
+    var tries2 = 7;
+    var start_button = document.querySelector(".start_button");
     var button1 = document.querySelector(".button1");
     var new_text = document.querySelector(".start_text");
     var new_title = document.querySelector(".start_title");
     var div1 = document.querySelector(".div1");
     var div2 = document.querySelector(".div2");
-    var div3 = document.querySelector(".div3")
+    var div3 = document.querySelector(".div3");
+    var div4 = document.querySelector(".div4");
+    var flex_div = document.querySelector(".flex-div");
+    var flex_title = document.querySelector(".flex_title");
+    var img1 = document.querySelector(".hangimg");
+    var stage1 = document.getElementById("stage1");
+    var tries = document.querySelector(".tries");
+    var alphabet = "abcdefghijklmnopqrstuvwxyz";
     function nextstep(){
         new_title.innerHTML = "Choose how many letters you'd like from below!";
         new_text.innerHTML = "";
         button1.style.display = "none";
-        var nbutton1 = document.createElement("button");
-        div1.appendChild(nbutton1);
-        nbutton1.style.width = "50px";
-        nbutton1.style.length = "50px";
-        nbutton1.style.height = "50px";
-        nbutton1.innerHTML = "1";
         var nbutton2 = document.createElement("button");
         div1.appendChild(nbutton2);
         nbutton2.style.width = "50px";
         nbutton2.style.length = "50px";
         nbutton2.style.height = "50px";
         nbutton2.innerHTML = "2";
+        nbutton2.style.backgroundColor = "rgb(168, 165, 165)";
+        nbutton2.style.border = "solid";
+        nbutton2.style.borderWidth = "1px";
+        nbutton2.style.borderRadius = "20px";
+        nbutton2.style.borderColor = "rgb(87, 95, 169)";
+        nbutton2.style.margin = "10px";
+        nbutton2.style.color = "rgb(87, 95, 169)";
+        nbutton2.style.fontWeight = "bold";
+        nbutton2.style.cursor = "pointer";
+        nbutton2.addEventListener("mouseover", function(){
+            nbutton2.style.backgroundColor = "rgb(87, 95, 169)";
+            nbutton2.style.color = "rgb(168, 165, 165)";
+            nbutton2.style.borderColor = "rgb(168, 165, 165)";
+        });
+        nbutton2.addEventListener("mouseout", function(){
+            nbutton2.style.backgroundColor = "rgb(168, 165, 165)";
+            nbutton2.style.color = "rgb(87, 95, 169)";
+            nbutton2.style.borderColor = "rgb(87, 95, 169)";
+        });
         var nbutton3 = document.createElement("button");
         div1.appendChild(nbutton3);
         nbutton3.style.width = "50px";
         nbutton3.style.length = "50px";
         nbutton3.style.height = "50px";
         nbutton3.innerHTML = "3";
+        nbutton3.style.backgroundColor = "rgb(168, 165, 165)";
+        nbutton3.style.border = "solid";
+        nbutton3.style.borderWidth = "1px";
+        nbutton3.style.borderRadius = "20px";
+        nbutton3.style.borderColor = "rgb(87, 95, 169)";
+        nbutton3.style.margin = "10px";
+        nbutton3.style.color = "rgb(87, 95, 169)";
+        nbutton3.style.fontWeight = "bold";
+        nbutton3.style.cursor = "pointer";
+        nbutton3.addEventListener("mouseover", function(){
+            nbutton3.style.backgroundColor = "rgb(87, 95, 169)";
+            nbutton3.style.color = "rgb(168, 165, 165)";
+            nbutton3.style.borderColor = "rgb(168, 165, 165)";
+        });
+        nbutton3.addEventListener("mouseout", function(){
+            nbutton3.style.backgroundColor = "rgb(168, 165, 165)";
+            nbutton3.style.color = "rgb(87, 95, 169)";
+            nbutton3.style.borderColor = "rgb(87, 95, 169)";
+        });
         var nbutton4 = document.createElement("button");
         div1.appendChild(nbutton4);
         nbutton4.style.width = "50px";
         nbutton4.style.length = "50px";
         nbutton4.style.height = "50px";
         nbutton4.innerHTML = "4";
+        nbutton4.style.backgroundColor = "rgb(168, 165, 165)";
+        nbutton4.style.border = "solid";
+        nbutton4.style.borderWidth = "1px";
+        nbutton4.style.borderRadius = "20px";
+        nbutton4.style.borderColor = "rgb(87, 95, 169)";
+        nbutton4.style.margin = "10px";
+        nbutton4.style.color = "rgb(87, 95, 169)";
+        nbutton4.style.fontWeight = "bold";
+        nbutton4.style.cursor = "pointer";
+        nbutton4.addEventListener("mouseover", function(){
+            nbutton4.style.backgroundColor = "rgb(87, 95, 169)";
+            nbutton4.style.color = "rgb(168, 165, 165)";
+            nbutton4.style.borderColor = "rgb(168, 165, 165)";
+        });
+        nbutton4.addEventListener("mouseout", function(){
+            nbutton4.style.backgroundColor = "rgb(168, 165, 165)";
+            nbutton4.style.color = "rgb(87, 95, 169)";
+            nbutton4.style.borderColor = "rgb(87, 95, 169)";
+        });
         var nbutton5 = document.createElement("button");
         div1.appendChild(nbutton5);
         nbutton5.style.width = "50px";
         nbutton5.style.length = "50px";
         nbutton5.style.height = "50px";
         nbutton5.innerHTML = "5";
+        nbutton5.style.backgroundColor = "rgb(168, 165, 165)";
+        nbutton5.style.border = "solid";
+        nbutton5.style.borderWidth = "1px";
+        nbutton5.style.borderRadius = "20px";
+        nbutton5.style.borderColor = "rgb(87, 95, 169)";
+        nbutton5.style.margin = "10px";
+        nbutton5.style.color = "rgb(87, 95, 169)";
+        nbutton5.style.fontWeight = "bold";
+        nbutton5.style.cursor = "pointer";
+        nbutton5.addEventListener("mouseover", function(){
+            nbutton5.style.backgroundColor = "rgb(87, 95, 169)";
+            nbutton5.style.color = "rgb(168, 165, 165)";
+            nbutton5.style.borderColor = "rgb(168, 165, 165)";
+        });
+        nbutton5.addEventListener("mouseout", function(){
+            nbutton5.style.backgroundColor = "rgb(168, 165, 165)";
+            nbutton5.style.color = "rgb(87, 95, 169)";
+            nbutton5.style.borderColor = "rgb(87, 95, 169)";
+        });
         var nbutton6 = document.createElement("button");
         div1.appendChild(nbutton6);
         nbutton6.style.width = "50px";
         nbutton6.style.length = "50px";
         nbutton6.style.height = "50px";
         nbutton6.innerHTML = "6";
+        nbutton6.style.backgroundColor = "rgb(168, 165, 165)";
+        nbutton6.style.border = "solid";
+        nbutton6.style.borderWidth = "1px";
+        nbutton6.style.borderRadius = "20px";
+        nbutton6.style.borderColor = "rgb(87, 95, 169)";
+        nbutton6.style.margin = "10px";
+        nbutton6.style.color = "rgb(87, 95, 169)";
+        nbutton6.style.fontWeight = "bold";
+        nbutton6.style.cursor = "pointer";
+        nbutton6.addEventListener("mouseover", function(){
+            nbutton6.style.backgroundColor = "rgb(87, 95, 169)";
+            nbutton6.style.color = "rgb(168, 165, 165)";
+            nbutton6.style.borderColor = "rgb(168, 165, 165)";
+        });
+        nbutton6.addEventListener("mouseout", function(){
+            nbutton6.style.backgroundColor = "rgb(168, 165, 165)";
+            nbutton6.style.color = "rgb(87, 95, 169)";
+            nbutton6.style.borderColor = "rgb(87, 95, 169)";
+        });
         var input1 = document.createElement("input");
         input1.style.width = "50px";
         input1.style.length = "50px";
         input1.style.height = "50px";
         var submitbutton = document.createElement("button");
+        submitbutton.style.cursor = "pointer";
         submitbutton.style.width = "100px";
         submitbutton.style.height = "50px";
         submitbutton.style.length = "50px";
         submitbutton.innerHTML = "Submit";
+        submitbutton.style.backgroundColor = "rgb(168, 165, 165)";
+        submitbutton.style.border = "solid";
+        submitbutton.style.borderWidth = "1px";
+        submitbutton.style.borderRadius = "20px";
+        submitbutton.style.borderColor = "rgb(87, 95, 169)";
+        submitbutton.style.margin = "10px";
+        submitbutton.style.color = "rgb(87, 95, 169)";
+        submitbutton.style.fontWeight = "bold";
+        submitbutton.addEventListener("mouseover", function(){
+            submitbutton.style.backgroundColor = "rgb(87, 95, 169)";
+            submitbutton.style.color = "rgb(168, 165, 165)";
+            submitbutton.style.borderColor = "rgb(168, 165, 165)";
+        });
+        submitbutton.addEventListener("mouseout", function(){
+            submitbutton.style.backgroundColor = "rgb(168, 165, 165)";
+            submitbutton.style.color = "rgb(87, 95, 169)";
+            submitbutton.style.borderColor = "rgb(87, 95, 169)";
+        });
         var under1 = document.createElement("p");
         under1.innerHTML = "_";
         under1.style.fontSize = "120px";
@@ -116,27 +241,137 @@ return list3;
         under3.style.fontSize = "95px";
         var under4 = document.createElement("p");
         under4.innerHTML = "_ _ _ _";
-        under4.style.fontSize = "80px";
+        under4.style.fontSize = "95px";
         var under5 = document.createElement("p");
         under5.innerHTML = "_ _ _ _ _";
-        under5.style.fontSize = "65px";
+        under5.style.fontSize = "95px";
         var under6 = document.createElement("p");
         under6.innerHTML = "_ _ _ _ _ _";
-        under6.style.fontSize = "50px";
-        var array3 = ["and", "are", "fix", "own", "fly", "odd", "ape", "fry", "our", "ace"];
+        under6.style.fontSize = "95px";
+        input1.addEventListener("keypress", function(){
+            if (event.key == "Enter"){
+                submitbutton.click();
+            }
+        });
         nbutton6.addEventListener("click", function(){
-        nbutton1.style.display = "none";
+        img1.style.display = "none";
         nbutton2.style.display = "none";
         nbutton3.style.display = "none";
         nbutton4.style.display = "none";
         nbutton5.style.display = "none";
         nbutton6.style.display = "none";
-        new_title.innerHTML = "Guess a letter!";
-        div1.appendChild(input1);
         div2.appendChild(under6);
+        var output = "_ _ _ _ _ _";
+        var array3 = ["window","travel","sphere","impact", "spirit", "wisdom", "ginger", "strive", "castle", "anchor", "purple", "forest", "unique", "legend", "banner", "dazzle", "fabric"];
+        flex_title.innerHTML = "Used Letters: ";
+        flex_title.style.backgroundColor = "white";
+        flex_title.style.width = "50%";
+        flex_title.style.marginLeft = "47px";
+        flex_title.style.border = "double";
+        flex_title.style.borderColor = "rgb(87, 95, 169)";
+        flex_title.style.borderRadius = "25px";
+        flex_title.style.color = "rgb(87, 95, 169)";
+        flex_title.style.marginBottom = "10px";
+        flex_title.style.borderWidth = "thick";
+        flex_div.style.display = "flex";
+        stage1.style.display = "block";
+        tries.style.display = "inline-block";
+        tries.style.backgroundColor = "white";
+        tries.style.width = "50%";
+        tries.style.marginLeft = "70px";
+        tries.style.border = "double";
+        tries.style.borderWidth = "thick";
+        tries.style.borderColor = "rgb(87, 95, 169)";
+        tries.style.borderRadius = "25px";
+        tries.style.color = "rgb(87, 95, 169)";
+        tries.style.paddingRight = "55px";
+        tries.style.marginTop = "15px";
+        div1.appendChild(input1);
+        div1.appendChild(submitbutton);
+        var a = Math.floor(Math.random() * array3.length);
+        var rword3 = array3[a];
+        var answer;
+        var cor = 0;
+        var list1 = [];
+        var list5 = findDuplicates(rword3);
+        submitbutton.addEventListener("click", function(){
+                answer = input1.value.toLowerCase();
+                var loc = rword3.indexOf(answer);
+                function hide(){
+                    div3.style.display = "none";
+                }
+                function clear(){
+                    tries.style.borderColor = "rgb(87, 95, 169)";
+                    tries.style.color = "rgb(87, 95, 169)";
+                    tries.style.fontWeight = "normal";
+                }
+            if(alphabet.includes(answer) == true){
+                if(list1.includes(answer) && (cor < rword3.length) && (answer.length == 1) && tries2 > 0){
+                        div3.style.display = "block";
+                        div3.innerHTML = "You already chose this letter!";
+                        setTimeout(hide, 3000);
+                    }
+                else{
+                if((rword3.includes(answer)) && (answer != "") && (cor < rword3.length) && (answer.length == 1) && tries2 > 0){
+                    var loc2 = [];
+                    output = replace(output, answer, loc*2);
+                    cor += 1
+                    for(let i = 0; i < list5.length; i++){
+                        if(rword3[list5[i]] == answer){
+                            loc2.push(list5[i]);
+                        }
+                   }
+                    for(let j = 0; j < loc2.length; j++){
+                        output = replace(output, answer, loc2[j]*2);
+                        cor += 1
+                  }
+                    under6.innerHTML = output;
+                    tries.style.borderColor = "green";
+                    tries.style.color = "green";
+                    setTimeout(clear, 1500);
+                    }
+                }
+                if(list1.includes(answer) == false && cor < rword3.length && answer.length == 1 && tries2 > 0){
+                    let newdiv = document.createElement("div");
+                    newdiv.style.height = "45px";
+                    newdiv.style.width = "45px";
+                    newdiv.style.margin = "10px";
+                    newdiv.style.backgroundColor = "rgb(87, 95, 169)";
+                    newdiv.style.border = "outset";
+                    newdiv.style.borderColor = "gray";
+                    flex_div.appendChild(newdiv)
+                    newdiv.innerHTML = answer
+                    newdiv.style.fontSize = "25px";
+                }
+                if(list1.includes(answer) == false && rword3.includes(answer) == false && answer.length == 1 && tries2 > 0 && cor < rword3.length){
+                    tries2 -= 1
+                    tries.innerHTML = "Mistakes Left: " + tries2;
+                    tries.style.fontWeight = "bold";
+                    div3.style.display = "block";
+                    div3.innerHTML = "Wrong!"
+                    tries.style.borderColor = "red";
+                    tries.style.color = "red";
+                    setTimeout(clear, 1500);
+                    setTimeout(hide, 3000);
+                    
+                }
+                list1.push(answer);
+                if(tries2 == 0){
+                    div3.style.display = "none";
+                    div4.style.display = "block";
+                    div4.innerHTML = "You lost! Better luck next time.";
+                }
+                if(cor == rword3.length){
+                    div3.style.display = "none";
+                    div4.style.display = "block";
+                    div4.innerHTML = "Congratulations, you beat the game!";
+                    div4.style.paddingTop = "10px";
+                }
+            }
+       })
         });
         nbutton5.addEventListener("click", function(){
-        nbutton1.style.display = "none";
+        img1.style.display = "none";
         nbutton2.style.display = "none";
         nbutton3.style.display = "none";
         nbutton4.style.display = "none";
@@ -145,9 +380,117 @@ return list3;
         new_title.innerHTML = "Guess a letter!";
         div1.appendChild(input1);
         div2.appendChild(under5);
+        flex_title.innerHTML = "Used Letters: ";
+        flex_title.style.backgroundColor = "white";
+        flex_title.style.width = "50%";
+        flex_title.style.marginLeft = "47px";
+        flex_title.style.border = "double";
+        flex_title.style.borderColor = "rgb(87, 95, 169)";
+        flex_title.style.borderRadius = "25px";
+        flex_title.style.color = "rgb(87, 95, 169)";
+        flex_title.style.marginBottom = "10px";
+        flex_title.style.borderWidth = "thick";
+        flex_div.style.display = "flex";
+        stage1.style.display = "block";
+        tries.style.display = "inline-block";
+        tries.style.backgroundColor = "white";
+        tries.style.width = "50%";
+        tries.style.marginLeft = "70px";
+        tries.style.border = "double";
+        tries.style.borderWidth = "thick";
+        tries.style.borderColor = "rgb(87, 95, 169)";
+        tries.style.borderRadius = "25px";
+        tries.style.color = "rgb(87, 95, 169)";
+        tries.style.paddingRight = "55px";
+        tries.style.marginTop = "15px";
+        div1.appendChild(input1);
+        div1.appendChild(submitbutton);
+        var array3 = ["apple", "tiger", "ocean", "smile", "watch", "blaze", "stone", "happy", "swift", "green", "fable", "glint", "plumb", "dream", "quirk"];
+        var a = Math.floor(Math.random() * array3.length);
+        var rword3 = array3[a];
+        var answer;
+        var cor = 0;
+        var list1 = [];
+        var list5 = findDuplicates(rword3);
+        submitbutton.addEventListener("click", function(){
+                answer = input1.value.toLowerCase();
+                var loc = rword3.indexOf(answer);
+                function hide(){
+                    div3.style.display = "none";
+                }
+                function clear(){
+                    tries.style.borderColor = "rgb(87, 95, 169)";
+                    tries.style.color = "rgb(87, 95, 169)";
+                    tries.style.fontWeight = "normal";
+                }
+            if(alphabet.includes(answer) == true){
+                if(list1.includes(answer) && (cor < rword3.length) && (answer.length == 1) && tries2 > 0){
+                        div3.style.display = "block";
+                        div3.innerHTML = "You already chose this letter!";
+                        setTimeout(hide, 3000);
+                    }
+                else{
+                if((rword3.includes(answer)) && (answer != "") && (cor < rword3.length) && (answer.length == 1) && tries2 > 0){
+                    var loc2 = [];
+                    output = replace(output, answer, loc*2);
+                    cor += 1
+                    for(let i = 0; i < list5.length; i++){
+                        if(rword3[list5[i]] == answer){
+                            loc2.push(list5[i]);
+                        }
+                    }
+                    for(let j = 0; j < loc2.length; j++){
+                        output = replace(output, answer, loc2[j]*2);
+                        cor += 1
+                    }
+                    under5.innerHTML = output;
+                    tries.style.borderColor = "green";
+                    tries.style.color = "green";
+                    setTimeout(clear, 1500);
+                    }
+                }
+                if(list1.includes(answer) == false && cor < rword3.length && answer.length == 1 && tries2 > 0){
+                    let newdiv = document.createElement("div");
+                    newdiv.style.height = "45px";
+                    newdiv.style.width = "45px";
+                    newdiv.style.margin = "10px";
+                    newdiv.style.backgroundColor = "rgb(87, 95, 169)";
+                    newdiv.style.border = "outset";
+                    newdiv.style.borderColor = "gray";
+                    flex_div.appendChild(newdiv)
+                    newdiv.innerHTML = answer
+                    newdiv.style.fontSize = "25px";
+                }
+                if(list1.includes(answer) == false && rword3.includes(answer) == false && answer.length == 1 && tries2 > 0 && cor < rword3.length){
+                    tries2 -= 1
+                    tries.innerHTML = "Mistakes Left: " + tries2;
+                    tries.style.fontWeight = "bold";
+                    div3.style.display = "block";
+                    div3.innerHTML = "Wrong!"
+                    tries.style.borderColor = "red";
+                    tries.style.color = "red";
+                    setTimeout(clear, 1500);
+                    setTimeout(hide, 3000);
+                    
+                }
+                list1.push(answer);
+                if(tries2 == 0){
+                    div3.style.display = "none";
+                    div4.style.display = "block";
+                    div4.innerHTML = "You lost! Better luck next time.";
+                }
+                if(cor == rword3.length){
+                    div3.style.display = "none";
+                    div4.style.display = "block";
+                    div4.innerHTML = "Congratulations, you beat the game!";
+                    div4.style.paddingTop = "10px";
+                }
+            }
+       })
+        var output = "_ _ _ _ _";
         });
         nbutton4.addEventListener("click", function(){
-        nbutton1.style.display = "none";
+        img1.style.display = "none";
         nbutton2.style.display = "none";
         nbutton3.style.display = "none";
         nbutton4.style.display = "none";
@@ -156,42 +499,61 @@ return list3;
         new_title.innerHTML = "Guess a letter!";
         div1.appendChild(input1);
         div2.appendChild(under4);
-        });
-        nbutton3.addEventListener("click", function(){
-        nbutton1.style.display = "none";
-        nbutton2.style.display = "none";
-        nbutton3.style.display = "none";
-        nbutton4.style.display = "none";
-        nbutton5.style.display = "none";
-        nbutton6.style.display = "none";
-        new_title.innerHTML = "Guess a letter!";
+        var output = "_ _ _ _";
+        var array3 = ["wind", "kite", "fish", "jump", "bark", "book", "door", "tree", "lamp", "play"];
+        flex_title.innerHTML = "Used Letters: ";
+        flex_title.style.backgroundColor = "white";
+        flex_title.style.width = "50%";
+        flex_title.style.marginLeft = "47px";
+        flex_title.style.border = "double";
+        flex_title.style.borderColor = "rgb(87, 95, 169)";
+        flex_title.style.borderRadius = "25px";
+        flex_title.style.color = "rgb(87, 95, 169)";
+        flex_title.style.marginBottom = "10px";
+        flex_title.style.borderWidth = "thick";
+        flex_div.style.display = "flex";
+        stage1.style.display = "block";
+        tries.style.display = "inline-block";
+        tries.style.backgroundColor = "white";
+        tries.style.width = "50%";
+        tries.style.marginLeft = "70px";
+        tries.style.border = "double";
+        tries.style.borderWidth = "thick";
+        tries.style.borderColor = "rgb(87, 95, 169)";
+        tries.style.borderRadius = "25px";
+        tries.style.color = "rgb(87, 95, 169)";
+        tries.style.paddingRight = "55px";
+        tries.style.marginTop = "15px";
         div1.appendChild(input1);
-        div2.appendChild(under3);
         div1.appendChild(submitbutton);
         var a = Math.floor(Math.random() * array3.length);
         var rword3 = array3[a];
-        new_title.innerHTML = rword3;
         var answer;
         var cor = 0;
-        var output = "_ _ _";
         var list1 = [];
         var list5 = findDuplicates(rword3);
         submitbutton.addEventListener("click", function(){
-                answer = input1.value;
+                answer = input1.value.toLowerCase();
                 var loc = rword3.indexOf(answer);
-                function erase(){
-                    message.innerHTML = "";
+                function hide(){
+                    div3.style.display = "none";
                 }
-                if(list1.includes(answer)){
-                        var message = document.createElement("p");
-                        div3.appendChild(message);
-                        message.innerHTML = "You already chose this letter!";
-                        setTimeout(erase, 3000);
+                function clear(){
+                    tries.style.borderColor = "rgb(87, 95, 169)";
+                    tries.style.color = "rgb(87, 95, 169)";
+                    tries.style.fontWeight = "normal";
+                }
+            if(alphabet.includes(answer) == true){
+                if(list1.includes(answer) && (cor < rword3.length) && (answer.length == 1) && tries2 > 0){
+                        div3.style.display = "block";
+                        div3.innerHTML = "You already chose this letter!";
+                        setTimeout(hide, 3000);
                     }
                 else{
-                if((rword3.includes(answer)) && (answer != "")){
+                if((rword3.includes(answer)) && (answer != "") && (cor < rword3.length) && (answer.length == 1) && tries2 > 0){
                     var loc2 = [];
                     output = replace(output, answer, loc*2);
+                    cor += 1
                     for(let i = 0; i < list5.length; i++){
                         if(rword3[list5[i]] == answer){
                             loc2.push(list5[i]);
@@ -199,16 +561,173 @@ return list3;
                     }
                     for(let j = 0; j < loc2.length; j++){
                         output = replace(output, answer, loc2[j]*2);
+                        cor += 1
                     }
-                    under3.innerHTML = output;
-                    list1.push(answer);
-                    cor += 1
+                    under4.innerHTML = output;
+                    tries.style.borderColor = "green";
+                    tries.style.color = "green";
+                    setTimeout(clear, 1500);
                     }
                 }
+                if(list1.includes(answer) == false && cor < rword3.length && answer.length == 1 && tries2 > 0){
+                    let newdiv = document.createElement("div");
+                    newdiv.style.height = "45px";
+                    newdiv.style.width = "45px";
+                    newdiv.style.margin = "10px";
+                    newdiv.style.backgroundColor = "rgb(87, 95, 169)";
+                    newdiv.style.border = "outset";
+                    newdiv.style.borderColor = "gray";
+                    flex_div.appendChild(newdiv)
+                    newdiv.innerHTML = answer
+                    newdiv.style.fontSize = "25px";
+                }
+                if(list1.includes(answer) == false && rword3.includes(answer) == false && answer.length == 1 && tries2 > 0 && cor < rword3.length){
+                    tries2 -= 1
+                    tries.innerHTML = "Mistakes Left: " + tries2;
+                    tries.style.fontWeight = "bold";
+                    div3.style.display = "block";
+                    div3.innerHTML = "Wrong!"
+                    tries.style.borderColor = "red";
+                    tries.style.color = "red";
+                    setTimeout(clear, 1500);
+                    setTimeout(hide, 3000);
+                    
+                }
+                list1.push(answer);
+                if(tries2 == 0){
+                    div3.style.display = "none";
+                    div4.style.display = "block";
+                    div4.innerHTML = "You lost! Better luck next time.";
+                }
+                if(cor == rword3.length){
+                    div3.style.display = "none";
+                    div4.style.display = "block";
+                    div4.innerHTML = "Congratulations, you beat the game!";
+                    div4.style.paddingTop = "10px";
+                }
+            }
+       })
+        });
+        nbutton3.addEventListener("click", function(){
+        img1.style.display = "none";
+        nbutton2.style.display = "none";
+        nbutton3.style.display = "none";
+        nbutton4.style.display = "none";
+        nbutton5.style.display = "none";
+        nbutton6.style.display = "none";
+        new_title.innerHTML = "Guess a letter!";
+        var output = "_ _ _";
+        var array3 = ["and", "are", "fix", "own", "fly", "odd", "ape", "fry", "our", "ace"];
+        div2.appendChild(under3);
+        flex_title.innerHTML = "Used Letters: ";
+        flex_title.style.backgroundColor = "white";
+        flex_title.style.width = "50%";
+        flex_title.style.marginLeft = "47px";
+        flex_title.style.border = "double";
+        flex_title.style.borderColor = "rgb(87, 95, 169)";
+        flex_title.style.borderRadius = "25px";
+        flex_title.style.color = "rgb(87, 95, 169)";
+        flex_title.style.marginBottom = "10px";
+        flex_title.style.borderWidth = "thick";
+        flex_div.style.display = "flex";
+        stage1.style.display = "block";
+        tries.style.display = "inline-block";
+        tries.style.backgroundColor = "white";
+        tries.style.width = "50%";
+        tries.style.marginLeft = "70px";
+        tries.style.border = "double";
+        tries.style.borderWidth = "thick";
+        tries.style.borderColor = "rgb(87, 95, 169)";
+        tries.style.borderRadius = "25px";
+        tries.style.color = "rgb(87, 95, 169)";
+        tries.style.paddingRight = "55px";
+        tries.style.marginTop = "15px";
+        div1.appendChild(input1);
+        div1.appendChild(submitbutton);
+        var a = Math.floor(Math.random() * array3.length);
+        var rword3 = array3[a];
+        var answer;
+        var cor = 0;
+        var list1 = [];
+        var list5 = findDuplicates(rword3);
+        submitbutton.addEventListener("click", function(){
+                answer = input1.value.toLowerCase();
+                var loc = rword3.indexOf(answer);
+                function hide(){
+                    div3.style.display = "none";
+                }
+                function clear(){
+                    tries.style.borderColor = "rgb(87, 95, 169)";
+                    tries.style.color = "rgb(87, 95, 169)";
+                    tries.style.fontWeight = "normal";
+                }
+            if(alphabet.includes(answer) == true){
+                if(list1.includes(answer) && (cor < rword3.length) && (answer.length == 1) && tries2 > 0){
+                        div3.style.display = "block";
+                        div3.innerHTML = "You already chose this letter!";
+                        setTimeout(hide, 3000);
+                    }
+                else{
+                if((rword3.includes(answer)) && (answer != "") && (cor < rword3.length) && (answer.length == 1) && tries2 > 0){
+                    var loc2 = [];
+                    output = replace(output, answer, loc*2);
+                    cor += 1
+                    for(let i = 0; i < list5.length; i++){
+                        if(rword3[list5[i]] == answer){
+                            loc2.push(list5[i]);
+                        }
+                    }
+                    for(let j = 0; j < loc2.length; j++){
+                        output = replace(output, answer, loc2[j]*2);
+                        cor += 1
+                    }
+                    under3.innerHTML = output;
+                    tries.style.borderColor = "green";
+                    tries.style.color = "green";
+                    setTimeout(clear, 1500);
+                    }
+                }
+                if(list1.includes(answer) == false && cor < rword3.length && answer.length == 1 && tries2 > 0){
+                    let newdiv = document.createElement("div");
+                    newdiv.style.height = "45px";
+                    newdiv.style.width = "45px";
+                    newdiv.style.margin = "10px";
+                    newdiv.style.backgroundColor = "rgb(87, 95, 169)";
+                    newdiv.style.border = "outset";
+                    newdiv.style.borderColor = "gray";
+                    flex_div.appendChild(newdiv)
+                    newdiv.innerHTML = answer
+                    newdiv.style.fontSize = "25px";
+                }
+                if(list1.includes(answer) == false && rword3.includes(answer) == false && answer.length == 1 && tries2 > 0 && cor < rword3.length){
+                    tries2 -= 1
+                    tries.innerHTML = "Mistakes Left: " + tries2;
+                    tries.style.fontWeight = "bold";
+                    div3.style.display = "block";
+                    div3.innerHTML = "Wrong!"
+                    tries.style.borderColor = "red";
+                    tries.style.color = "red";
+                    setTimeout(clear, 1500);
+                    setTimeout(hide, 3000);
+                    
+                }
+                list1.push(answer);
+                if(tries2 == 0){
+                    div3.style.display = "none";
+                    div4.style.display = "block";
+                    div4.innerHTML = "You lost! Better luck next time.";
+                }
+                if(cor == rword3.length){
+                    div3.style.display = "none";
+                    div4.style.display = "block";
+                    div4.innerHTML = "Congratulations, you beat the game!";
+                    div4.style.paddingTop = "10px";
+                }
+            }
        })
         });
         nbutton2.addEventListener("click", function(){
-        nbutton1.style.display = "none";
+        img1.style.display = "none";
         nbutton2.style.display = "none";
         nbutton3.style.display = "none";
         nbutton4.style.display = "none";
@@ -217,17 +736,114 @@ return list3;
         new_title.innerHTML = "Guess a letter!";
         div1.appendChild(input1);
         div2.appendChild(under2);
-        });
-        nbutton1.addEventListener("click", function(){
-        nbutton1.style.display = "none";
-        nbutton2.style.display = "none";
-        nbutton3.style.display = "none";
-        nbutton4.style.display = "none";
-        nbutton5.style.display = "none";
-        nbutton6.style.display = "none";
-        new_title.innerHTML = "Guess a letter!";
+        var output = "_ _";
+        var array3 = ["no", "do", "if", "so", "us", "be", "or", "am", "we", "my", "at", "it", "go", "on", "up", "by"];
+        flex_title.innerHTML = "Used Letters: ";
+        flex_title.style.backgroundColor = "white";
+        flex_title.style.width = "50%";
+        flex_title.style.marginLeft = "47px";
+        flex_title.style.border = "double";
+        flex_title.style.borderColor = "rgb(87, 95, 169)";
+        flex_title.style.borderRadius = "25px";
+        flex_title.style.color = "rgb(87, 95, 169)";
+        flex_title.style.marginBottom = "10px";
+        flex_title.style.borderWidth = "thick";
+        flex_div.style.display = "flex";
+        stage1.style.display = "block";
+        tries.style.display = "inline-block";
+        tries.style.backgroundColor = "white";
+        tries.style.width = "50%";
+        tries.style.marginLeft = "70px";
+        tries.style.border = "double";
+        tries.style.borderWidth = "thick";
+        tries.style.borderColor = "rgb(87, 95, 169)";
+        tries.style.borderRadius = "25px";
+        tries.style.color = "rgb(87, 95, 169)";
+        tries.style.paddingRight = "55px";
+        tries.style.marginTop = "15px";
         div1.appendChild(input1);
-        div2.appendChild(under1);
+        div1.appendChild(submitbutton);
+        var a = Math.floor(Math.random() * array3.length);
+        var rword3 = array3[a];
+        var answer;
+        var cor = 0;
+        var list1 = [];
+        var list5 = findDuplicates(rword3);
+        submitbutton.addEventListener("click", function(){
+                answer = input1.value.toLowerCase();
+                var loc = rword3.indexOf(answer);
+                function hide(){
+                    div3.style.display = "none";
+                }
+                function clear(){
+                    tries.style.borderColor = "rgb(87, 95, 169)";
+                    tries.style.color = "rgb(87, 95, 169)";
+                    tries.style.fontWeight = "normal";
+                }
+            if(alphabet.includes(answer) == true){
+                if(list1.includes(answer) && (cor < rword3.length) && (answer.length == 1) && tries2 > 0){
+                        div3.style.display = "block";
+                        div3.innerHTML = "You already chose this letter!";
+                        setTimeout(hide, 3000);
+                    }
+                else{
+                if((rword3.includes(answer)) && (answer != "") && (cor < rword3.length) && (answer.length == 1) && tries2 > 0){
+                    var loc2 = [];
+                    output = replace(output, answer, loc*2);
+                    cor += 1
+                    for(let i = 0; i < list5.length; i++){
+                        if(rword3[list5[i]] == answer){
+                            loc2.push(list5[i]);
+                        }
+                   }
+                    for(let j = 0; j < loc2.length; j++){
+                        output = replace(output, answer, loc2[j]*2);
+                        cor += 1
+                  }
+                    under2.innerHTML = output;
+                    tries.style.borderColor = "green";
+                    tries.style.color = "green";
+                    setTimeout(clear, 1500);
+                    }
+                }
+                if(list1.includes(answer) == false && cor < rword3.length && answer.length == 1 && tries2 > 0){
+                    let newdiv = document.createElement("div");
+                    newdiv.style.height = "45px";
+                    newdiv.style.width = "45px";
+                    newdiv.style.margin = "10px";
+                    newdiv.style.backgroundColor = "rgb(87, 95, 169)";
+                    newdiv.style.border = "outset";
+                    newdiv.style.borderColor = "gray";
+                    flex_div.appendChild(newdiv)
+                    newdiv.innerHTML = answer
+                    newdiv.style.fontSize = "25px";
+                }
+                if(list1.includes(answer) == false && rword3.includes(answer) == false && answer.length == 1 && tries2 > 0 && cor < rword3.length){
+                    tries2 -= 1
+                    tries.innerHTML = "Mistakes Left: " + tries2;
+                    tries.style.fontWeight = "bold";
+                    div3.style.display = "block";
+                    div3.innerHTML = "Wrong!"
+                    tries.style.borderColor = "red";
+                    tries.style.color = "red";
+                    setTimeout(clear, 1500);
+                    setTimeout(hide, 3000);
+                    
+                }
+                list1.push(answer);
+                if(tries2 == 0){
+                    div3.style.display = "none";
+                    div4.style.display = "block";
+                    div4.innerHTML = "You lost! Better luck next time.";
+                }
+                if(cor == rword3.length){
+                    div3.style.display = "none";
+                    div4.style.display = "block";
+                    div4.innerHTML = "Congratulations, you beat the game!";
+                    div4.style.paddingTop = "10px";
+                }
+            }
+       })
         });
         
 
