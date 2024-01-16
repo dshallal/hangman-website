@@ -35,6 +35,27 @@
         let newString = orig.substring(0, index) + replace + orig.substring(index + 1);
         return newString;
     }
+    function reload(){
+        var rbutton = document.createElement("button");
+                    div4.appendChild(rbutton);
+                    rbutton.style.display = "block";
+                    rbutton.style.backgroundColor = "white";
+                    rbutton.style.border = "solid";
+                    rbutton.style.borderWidth = "1px";
+                    rbutton.style.borderRadius = "20px";
+                    rbutton.style.borderColor = "rgb(87, 95, 169)";
+                    rbutton.style.color = "rgb(87, 95, 169)";
+                    rbutton.style.fontWeight = "bold";
+                    rbutton.style.cursor = "pointer";
+                    rbutton.style.height = "50px";
+                    rbutton.style.width = "150px";
+                    rbutton.style.margin = "auto";
+                    rbutton.innerHTML = "Click to return to homescreen!";
+                    rbutton.style.fontFamily = "'Courier New', Courier, monospace";
+                    rbutton.addEventListener("click", function(){
+                        window.location.reload();
+                    });
+    }
     function findDuplicates(word){
     let counting = 0;
     let list3 = [];
@@ -254,6 +275,7 @@ return list3;
             }
         });
         nbutton6.addEventListener("click", function(){
+        new_title.innerHTML = "Guess a letter!";
         img1.style.display = "none";
         nbutton2.style.display = "none";
         nbutton3.style.display = "none";
@@ -360,12 +382,14 @@ return list3;
                     div3.style.display = "none";
                     div4.style.display = "block";
                     div4.innerHTML = "You lost! Better luck next time.";
+                    reload();
                 }
                 if(cor == rword3.length){
                     div3.style.display = "none";
                     div4.style.display = "block";
                     div4.innerHTML = "Congratulations, you beat the game!";
                     div4.style.paddingTop = "10px";
+                    reload();
                 }
             }
        })
@@ -478,12 +502,14 @@ return list3;
                     div3.style.display = "none";
                     div4.style.display = "block";
                     div4.innerHTML = "You lost! Better luck next time.";
+                    reload();
                 }
                 if(cor == rword3.length){
                     div3.style.display = "none";
                     div4.style.display = "block";
                     div4.innerHTML = "Congratulations, you beat the game!";
                     div4.style.paddingTop = "10px";
+                    reload();
                 }
             }
        })
@@ -598,12 +624,14 @@ return list3;
                     div3.style.display = "none";
                     div4.style.display = "block";
                     div4.innerHTML = "You lost! Better luck next time.";
+                    reload();
                 }
                 if(cor == rword3.length){
                     div3.style.display = "none";
                     div4.style.display = "block";
                     div4.innerHTML = "Congratulations, you beat the game!";
                     div4.style.paddingTop = "10px";
+                    reload();
                 }
             }
        })
@@ -716,12 +744,14 @@ return list3;
                     div3.style.display = "none";
                     div4.style.display = "block";
                     div4.innerHTML = "You lost! Better luck next time.";
+                    reload();
                 }
                 if(cor == rword3.length){
                     div3.style.display = "none";
                     div4.style.display = "block";
                     div4.innerHTML = "Congratulations, you beat the game!";
                     div4.style.paddingTop = "10px";
+                    reload();
                 }
             }
        })
@@ -835,12 +865,14 @@ return list3;
                     div3.style.display = "none";
                     div4.style.display = "block";
                     div4.innerHTML = "You lost! Better luck next time.";
+                    reload();
                 }
                 if(cor == rword3.length){
                     div3.style.display = "none";
                     div4.style.display = "block";
                     div4.innerHTML = "Congratulations, you beat the game!";
                     div4.style.paddingTop = "10px";
+                    reload();
                 }
             }
        })
